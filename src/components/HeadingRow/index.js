@@ -15,9 +15,6 @@ function HeadingRow() {
             <div className="col border p-2">
                 <strong>Email:</strong>
             </div>
-            <div className="col border p-2">
-                <strong>Title:</strong>
-            </div>
         </div>
     )
 }
