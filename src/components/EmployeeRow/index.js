@@ -1,6 +1,6 @@
 import React from "react";
 
-function EmployeeRow({ lastname, firstname, location, age, email }) {
+function EmployeeRow({ lastname, firstname, city, state, email }) {
     return (
         <div className="row mx-3 text-center">
             <div className="col border p-2">
@@ -10,10 +10,10 @@ function EmployeeRow({ lastname, firstname, location, age, email }) {
                 {firstname}
             </div>
             <div className="col border p-2">
-                {location}
+                {city}
             </div>
             <div className="col border p-2">
-                {age}
+                {state}
             </div>
             <div className="col border p-2">
                 {email}
