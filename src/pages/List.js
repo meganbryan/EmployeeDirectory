@@ -5,11 +5,7 @@ import EmployeeRow from "../components/EmployeeRow";
 
 class List extends Component {
     state = {
-        lastname: "",
-        firstname: "",
-        location: "",
-        age: "",
-        email: ""
+        people: []
     };
 
     componentDidMount() {
@@ -20,21 +16,23 @@ class List extends Component {
         API.getEmployee()
             .then(res =>
                 this.setState({
-                    lastname: res.name.last, 
-                    firstname: res.name.first,
-                    location: res.location,
-                    age: res.dob.age,
-                    email: res.email,
+                    people: res.data.results
                 })
             )
             .catch(err => console.log(err));
     };
 
+
+
     render() {
         return (
             <div>
                 <HeadingRow />
-                <EmployeeRow lastname={this.state.lastname}/>
+                {this.state.people.map((person) => {
+                    return (
+                        <EmployeeRow  lastname={person.name.last} firstname={person.name.first} city={person.location.city} state={person.location.state} age={person.dob.age} email={person.email} />
+                    )
+                })}
             </div>
         );
     };
