@@ -5,10 +5,18 @@ import EmployeeRow from "../components/EmployeeRow";
 
 class List extends Component {
     state = {
-        people: []
+        people: [],
+        filteredPeople: [],
+        textInput: ""
     };
 
-    componentDidMount() {
+    handleInputChange = (event) => {
+        this.setState({
+            textInput: event.target.value
+        })
+    }
+
+    componentDidMount = () => {
         this.retrieveEmployees();
     }
 
@@ -22,11 +30,27 @@ class List extends Component {
             .catch(err => console.log(err));
     };
 
+    sortByLast = () => {
+        return this.state.people.sort(function (a, b) {
+            if (a.name.last < b.name.last) {
+                return -1;
+            }
+            else {
+                return 1;
+            }
+        })
+    }
 
+    filterEmployees = () => {
+        this.setState({
+            filteredPeople: this.state.people.filter(person => person.location.state.includes(this.state.textInput))
+        });
+    };
 
-    render() {
+    render = () => {
         return (
             <div>
+                <input value={this.state.textInput} type="text" placeholder="Search states" onChange={this.handleInputChange}></input>
                 <HeadingRow />
                 {this.state.people.map((person) => {
                     return (
@@ -36,6 +60,6 @@ class List extends Component {
             </div>
         );
     };
-}
+};
 
 export default List;
