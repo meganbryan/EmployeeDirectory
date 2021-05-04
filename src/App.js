@@ -1,9 +1,9 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Wrapper from "./components/Wrapper";
-import List from "./pages/List";
+import EmployeeList from "./pages/EmployeeList";
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <div>
         <Navbar />
         <Wrapper>
-          <List />
+          <Route exact path="/" component={EmployeeList} />
         </Wrapper>
         <Footer />
       </div>
